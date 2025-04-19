@@ -6,35 +6,34 @@ const skills = [
   {
     skill: "HTML+CSS",
     level: "advanced",
-    color: "#2662EA",
+    color: "#E34F26", // HTML5’s official logo color (orange-red)
   },
   {
     skill: "JavaScript",
     level: "advanced",
-    color: "#EFD81D",
+    color: "#F7DF1E", // JavaScript’s official yellow (from the JS logo)
   },
   {
     skill: "Web Design",
     level: "advanced",
-    color: "#C3DCAF",
+    color: "#2AB7CA", // A vibrant teal inspired by design tools like Figma
+  },
+  {
+    skill: "React",
+    level: "intermediate",
+    color: "#61DAFB", // React’s official cyan (from its logo)
+  },
+  {
+    skill: "Vue",
+    level: "intermediate",
+    color: "#4FC08D", // Vue’s official green (from its logo)
   },
   {
     skill: "Git and GitHub",
     level: "intermediate",
-    color: "#E84F33",
-  },
-  {
-    skill: "React",
-    level: "advanced",
-    color: "#60DAFB",
-  },
-  {
-    skill: "Svelte",
-    level: "beginner",
-    color: "#FF3B00",
+    color: "#181717", // GitHub’s dark charcoal (from its logo and UI)
   },
 ];
-
 function App() {
   return (
     <div className="card">
@@ -64,12 +63,6 @@ function Intro() {
 function SkillList({ skills }) {
   return (
     <div className="skill-list">
-      {/* <Skill text="DSA" backGroundColor="red" emoji="🧠" />
-      <Skill text="HTML" backGroundColor="yellow" emoji="🏗️" />
-      <Skill text="CSS" backGroundColor="blue" emoji="🎨" />
-      <Skill text="JavaScript" backGroundColor="gold" emoji="⚡" />
-      <Skill text="React" backGroundColor="lightblue" emoji="⚛️" />
-      <Skill text="Web Design" backGroundColor="teal" emoji="🖌️" /> */}
       {skills.map((skill) => (
         <Skill skill={skill.skill} color={skill.color} level={skill.level} />
       ))}
@@ -78,10 +71,13 @@ function SkillList({ skills }) {
 }
 
 function Skill({ skill, level, color }) {
+  const textColor = skill === "Git and GitHub" ? "#FFFFFF" : "#000000";
+  const isLowContrast = color === "#F7DF1E"; // JavaScript's yellow
+
   return (
-    <div className="skill" style={{ backgroundColor: color }}>
+    <div className="skill" style={{ backgroundColor: color, color: textColor }}>
       <span>{skill}</span>
-      <span>
+      <span style={{ filter: isLowContrast ? "invert(1)" : "none" }}>
         {level === "beginner" && "👶"}
         {level === "intermediate" && "👍"}
         {level === "advanced" && "💪"}
